@@ -13,6 +13,20 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :users do
+    resources :reservations
+  end
+
+  namespace :admin do
+  # Directs /admin/products/* to Admin::ProductsController
+  # (app/controllers/admin/products_controller.rb)
+  resources :dinners
+  resources :dishes
+  resources :images
+  resources :reservations
+  resources :users
+end
+
   get root 'dinners#show'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
