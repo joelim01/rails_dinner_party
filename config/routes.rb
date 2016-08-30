@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  get root 'dinners#show'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
