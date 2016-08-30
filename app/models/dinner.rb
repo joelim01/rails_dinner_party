@@ -8,4 +8,8 @@ class Dinner < ApplicationRecord
     Dinner.where("DATE >= ?", Date.today)
   end
 
+  def self.in_the_past
+    Dinner.where("DATE < ?", Date.today)
+  end
+
 end

@@ -4,14 +4,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  has_many :reservations
+  has_many :dinners, through: :reservations
+  has_many :dishes, through: :dinners
 
- def admin?
-   self.role == "admin"
- end
+def dishes
+  users_past_dinners = Dinner.in_the_past.find_by(user: current_user)
+  users_past_dishes = users_past_dinners.collect do {|dinner| dinner.dishes}
+  users_past_dishes.flatten.uniq
+end
 
- def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.info
-    user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
+def admin?
+  self.role == "admin"
+end
+
+def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+  data = access_token.info
+  user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
     if user
       return user
     else
@@ -25,6 +34,6 @@ class User < ApplicationRecord
           password: Devise.friendly_token[0,20],
         )
       end
-   end
- end
+    end
+  end
 end
