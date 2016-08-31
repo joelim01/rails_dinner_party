@@ -1,0 +1,9 @@
+<div class="">
+  <p>
+    <h5><%= display_datetime(dinner.date) %></h5>
+    <p><%= dinner.chefs || "Chefs will be announced soon."%>
+      <h5>Serving:</h5>
+    <%= render partial: 'dishes/dishes', collection: dinner.dishes, locals: {commentable: true} %> </p>
+
+  </p>
+</div>

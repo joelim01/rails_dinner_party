@@ -1,0 +1,8 @@
+
+<%= dishes.name %>
+<%= dishes.ingredients.to_s %>
+
+<% if commentable == true %>
+  <h5>Comments:</h5>
+  <%= render partial: 'comments/comments', collection: dishes.comments %>
+<% end %>
