@@ -1,0 +1,7 @@
+<%= "Reservation on #{display_datetime(@reservation.date)}:"%>
+<%= form_for [@reservation.dinner, @reservation] do |f| %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :dinner_id %>
+  <%= f.number_field :party_of, placeholder: "Party of...", min: 1, class: "form-control" %>
+  <%= f.submit %>
+<% end %>

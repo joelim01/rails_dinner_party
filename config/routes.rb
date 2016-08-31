@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :reservations
     resources :dishes, only: [:index]
+    resources :reservations, only: [:index, :edit]
   end
 
   namespace :admin do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :users
 end
 
-  get root 'dinners#show'
+  get root 'dinners#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
