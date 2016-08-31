@@ -14,6 +14,10 @@ def dishes
   users_past_dishes.flatten.uniq
 end
 
+def reservation_for(dinner)
+  self.reservations.find_by(dinner_id: dinner.id)
+end
+
 def admin?
   self.role == "admin"
 end

@@ -15,18 +15,20 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :dishes, only: [:index]
-    resources :reservations, only: [:index, :edit]
+    resources :reservations, only: [:index]
   end
 
   namespace :admin do
-  # Directs /admin/products/* to Admin::ProductsController
-  # (app/controllers/admin/products_controller.rb)
-  resources :dinners
-  resources :dishes
-  resources :images
-  resources :reservations
-  resources :users
-end
+    # Directs /admin/products/* to Admin::ProductsController
+    # (app/controllers/admin/products_controller.rb)
+    resources :dinners
+    resources :dishes
+    resources :images
+    resources :reservations
+    resources :users
+  end
+
+  resources :reservations, only: [:edit]
 
   get root 'dinners#index'
 

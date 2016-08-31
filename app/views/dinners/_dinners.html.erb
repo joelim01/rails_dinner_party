@@ -1,4 +1,4 @@
 <p>
   <h5><%= display_datetime(dinners.date) %></h5>
-  <p><%= dinners.chefs || "Chefs will be announced soon."%> <%= reserve_or_sign_up(dinners) %> </p>
+  <p><%= dinners.chefs || "Chefs will be announced soon."%> <%= render partial: 'dinners_actions', locals: {dinners: dinners} %> </p>
 </p>

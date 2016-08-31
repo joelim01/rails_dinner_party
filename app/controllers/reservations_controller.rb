@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.create!(reservation_params)
-    redirect_to user_reservations_path(current_user)
+    redirect_to user_dinners_path(current_user)
   end
 
   def index
