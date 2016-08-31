@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :dishes, only: [:index]
-    resources :reservations, only: [:index]
+    resources :reservations
   end
 
   namespace :admin do

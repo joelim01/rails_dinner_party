@@ -1,4 +1,5 @@
 <%= form_for [dinners, current_user.reservation_for(dinners)] do |f| %>
+<%= puts current_user.reservation_for(dinners).inspect%>
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :dinner_id %>
   <%= f.number_field :party_of, placeholder: "Party of...", min: 1, class: "form-control" %>

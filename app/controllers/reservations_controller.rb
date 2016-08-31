@@ -2,12 +2,15 @@ class ReservationsController < ApplicationController
 
   def new
     @dinner = Dinner.find_by(id: params[:dinner_id])
-    @reservation = @dinner.reservations.build(user_id: current_user.id)
+    @reservation = @dinner.reservations.find_or_initialize_by(user_id: current_user.id)
+    if @reservation.persisted?
+      redirect_to user_reservations_path(current_user), :flash => { :error => "You already have a reservation for this event." }
+    end
   end
 
   def create
     @reservation = Reservation.create!(reservation_params)
-    redirect_to user_dinners_path(current_user)
+    redirect_to user_reservations_path(current_user)
   end
 
   def index
@@ -16,6 +19,18 @@ class ReservationsController < ApplicationController
     else
       @reservations = Reservation.all
     end
+  end
+
+  def update
+    @reservation = Reservation.find_by(user_id: params[:reservation][:user_id], dinner_id: params[:reservation][:dinner_id])
+    @reservation.update(party_of: params[:party_of])
+    redirect_to user_reservations_path(current_user)
+  end
+
+  def destroy
+    @reservation = Reservation.find_by(reservation_params)
+    @reservation.destroy
+    redirect_to user_reservations_path(current_user)
   end
 
 private
