@@ -1,13 +1,20 @@
-<%= form_for [dinners, current_user.reservation_for(dinners)] do |f| %>
-<%= puts current_user.reservation_for(dinners).inspect%>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :dinner_id %>
-  <%= f.number_field :party_of, placeholder: "Party of...", min: 1, class: "form-control" %>
-  <%= f.submit %>
-<% end %>
+<% if time == "past" %>
 
-<%= form_for [dinners, current_user.reservation_for(dinners)], method: :delete do |f| %>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :dinner_id %>
-  <%= f.submit "Cancel Reservation" %>
+  <%= form_for [dinners, current_user.reservation_for(dinners)] do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :dinner_id %>
+    <%= f.number_field :party_of, placeholder: "Party of...", min: 1, class: "form-control" %>
+    <%= f.submit %>
+  <% end %>
+
+  <%= form_for [dinners, current_user.reservation_for(dinners)], method: :delete do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :dinner_id %>
+    <%= f.submit "Cancel Reservation" %>
+  <% end %>
+
+<% else %>
+
+  <%= link_to "View dinner menu and comments.", dinner_path(dinners) %>
+
 <% end %>
