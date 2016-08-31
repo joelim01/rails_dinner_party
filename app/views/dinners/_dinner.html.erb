@@ -1,5 +1,4 @@
 <p>
-  <h3><%=dinner.date%></h2><br>
-  <h4><%=dinner.chefs%></h3>
-  <%= reserve_or_sign_up(dinner) %>
+  <h5><%= display_datetime(dinner.date) %></h5>
+  <p><%= dinner.chefs || "Chefs will be announced soon."%> <%= reserve_or_sign_up(dinner) %> </p>
 </p>

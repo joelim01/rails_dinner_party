@@ -8,4 +8,8 @@ module DinnersHelper
     end
   end
 
+  def display_datetime(datetime)
+    datetime.strftime("%A, %B %d, %Y at %H:%M%p")
+  end
+
 end
