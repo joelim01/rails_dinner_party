@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>RailsDinnerParty</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   </head>
+
   <%= render "/layouts/navigation" %><br>
   <%= render "/layouts/messages" %><br>
+
   <body>
     <%= yield %>
   </body>
+
 </html>
