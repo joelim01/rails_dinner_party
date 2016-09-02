@@ -9,11 +9,21 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   </head>
 
-  <%= render "/layouts/navigation" %><br>
-  <%= render "/layouts/messages" %><br>
 
   <body>
-    <%= yield %>
-  </body>
+    <div class="container">
 
+      <nav class="navbar">
+        <div class="container">
+          <ul class="navbar-list">
+            <%= render "/layouts/navigation" %>
+          </ul>
+        </div>
+      </nav>
+
+      <%= render "/layouts/messages" %><br>
+      <%= yield %>
+
+    </div>
+  </body>
 </html>
