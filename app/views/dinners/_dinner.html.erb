@@ -1,9 +1,15 @@
 <div class="">
-  <p>
     <h5><%= display_datetime(dinner.date) %></h5>
-    <p><%= dinner.chefs || "Chefs will be announced soon."%>
-      <h5>Serving:</h5>
-    <%= render partial: 'dishes/dishes', collection: dinner.dishes, locals: {commentable: true} %> </p>
+    <%= dinner.chefs || "Chefs will be announced soon."%><br>
 
-  </p>
+    <% if commentable == true %>
+    <details>
+      <summary>See Comments...</summary>
+      <%= render partial: 'comments/comments', collection: dinner.comments %>
+      <%= render partial: 'comments/form', locals: {dinner: dinner} %>
+    </details>
+    <% end %>
+
+      <h5>Serving:</h5>
+    <%= render partial: 'dishes/dishes', collection: dinner.dishes, locals: {commentable: true} %>
 </div>

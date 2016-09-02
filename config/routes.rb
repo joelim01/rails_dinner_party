@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users do
+  resources :users, only: [:edit, :update] do
     resources :dishes, only: [:index]
     resources :reservations
   end

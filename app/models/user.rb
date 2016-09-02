@@ -9,8 +9,7 @@ class User < ApplicationRecord
   has_many :dishes, through: :dinners
 
 def dishes
-  users_past_dinners = Dinner.in_the_past.find_by(user: current_user)
-  users_past_dishes = users_past_dinners.collect {|dinner| dinner.dishes}
+  users_past_dishes = self.dinners.in_the_past.collect {|dinner| dinner.dishes}
   users_past_dishes.flatten.uniq
 end
 
