@@ -1,0 +1,20 @@
+<%= form_for dinner, url: admin_dinner_path(dinner), html: {method: "patch"} do |f| %>
+
+
+  <%= f.label "Date", class: "form-control" %>
+  <%= f.date_field :date, class: "form-control" %>
+
+  <%= f.label :chefs, class: "form-control" %>
+  <%= f.text_field :chefs, class: "form-control" %>
+
+
+  <h4>Dishes:</h4>
+  <div class="">
+    <%=f.fields_for :dishes do |d| %>
+      <%= render '/shared/dishes/dish_fields', f: d %>
+    <% end %>
+    <%= link_to_add_association 'add another dish', f, :dishes, partial: '/shared/dishes/dish_fields' %>
+    <%= f.submit %>
+  </div>
+
+<% end %>

@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <%= f.label :creators %>
+  <%= f.text_field :creators, autofocus: true, placeholder: "Stuyvesant Supper Club" %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= link_to_remove_association "remove dish", f %>
+</div>

@@ -1,0 +1,5 @@
+<li class="navbar-item"><%=link_to "All User Reservations", admin_reservations_path, class: "navbar-link"  %></li>
+<li class="navbar-item"><%=link_to "Dinners", admin_dinners_path, class: "navbar-link"  %></li>
+<li class="navbar-item"><%=link_to "Dishes", admin_dishes_path, class: "navbar-link"  %></li>
+
+<li class="navbar-item.u-pull-right"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, class: "navbar-link u-pull-right" %></li>

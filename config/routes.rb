@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :reservations, only: [:edit]
 
-  get root 'dinners#index'
+  root to: 'dinners#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 

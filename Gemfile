@@ -31,6 +31,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+gem 'cocoon'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
