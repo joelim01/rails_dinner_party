@@ -11,10 +11,11 @@ class Admin::DinnersController < ApplicationController
   end
 
   def update
-    
     @dinner = Dinner.find_by(id: params[:id])
-    @dinner.update(dinner_params)
-    redirect_to edit_admin_dinner_path(@dinner)
+    @dinner.update_attributes(dinner_params)
+    redirect_to edit_admin_dinner_path(@dinner), :flash => { :message => "Dinner updated." }
+      rescue ActiveRecord::RecordInvalid => invalid
+        redirect_to edit_admin_dinner_path(@dinner), :flash => { :error => "#{invalid.record.class.name}: #{invalid.record.errors.full_messages.join " ,"}." }
   end
 
   def dinner_params

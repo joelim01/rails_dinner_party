@@ -6,5 +6,6 @@ class Dish < ApplicationRecord
   has_many :ingredients, through: :dish_ingredients
   has_many :images, as: :imageable
   has_many :comments, as: :commentable
+  validates :name, presence: true, allow_blank: false
 
 end
