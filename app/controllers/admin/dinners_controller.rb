@@ -19,7 +19,7 @@ class Admin::DinnersController < ApplicationController
   end
 
   def dinner_params
-    params.require(:dinner).permit(:date, :chefs, dishes_attributes: [:id, :name, :creators, :_destroy, ingredients_attributes: [:name]] )
+    params.require(:dinner).permit(:date, :chefs, dishes_attributes: [:id, :name, :creators, :_destroy, ingredients: [:ingredients_string]] )
   end
 
 end

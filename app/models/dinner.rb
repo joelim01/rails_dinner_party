@@ -31,10 +31,20 @@ class Dinner < ApplicationRecord
         dish = Dish.new(name: v[:name], creators: v[:creators])
       end
       dish.creators == "" ? dish.creators = "Stuyvesant Supper Club" : dish.creators
-      dish
-      end
 
-      self.dishes = dishes
+      if v[:ingredients][:ingredients_string] != nil && v[:ingredients][:ingredients_string] != ""
+        name_string = v[:ingredients][:ingredients_string].downcase
+        items = name_string.split(',')
+        ingredients = items.collect {|i| Ingredient.find_or_create_by(name: i.strip)}
+        dish.ingredients = ingredients
+      end
+      dish
     end
+    self.dishes = dishes
+  end
+
+  def dishes_attributes
+    "hello"
+  end
 
 end

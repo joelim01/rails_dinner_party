@@ -1,9 +1,16 @@
 <div class="nested-fields">
+  
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
   <%= f.label :creators %>
   <%= f.text_field :creators, autofocus: true, placeholder: "Stuyvesant Supper Club" %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+  <div class="">
+    <%=f.fields_for :ingredients do |i| %>
+      <%= render '/ingredients/ingredients_fields', f: i %>
+    <% end %>
+  </div>
 
   <%= link_to_remove_association "remove dish", f %>
 </div>

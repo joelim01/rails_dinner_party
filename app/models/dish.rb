@@ -8,4 +8,10 @@ class Dish < ApplicationRecord
   has_many :comments, as: :commentable
   validates :name, presence: true, allow_blank: false
 
+  def ingredients_string
+    array = self.ingredients.collect {|i| i.name}
+    string = array.join(", ")
+    string.titlecase
+  end
+
 end
