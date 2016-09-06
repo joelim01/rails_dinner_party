@@ -128,4 +128,11 @@
     });
   });
 
+  $(document).ready(function() {
+      $("#owner a.add_fields").
+        data("association-insertion-method", 'after').
+        data("association-insertion-traversal", 'closest').
+        data("association-insertion-node", '.nested-fields');
+  });
+
 })(jQuery);

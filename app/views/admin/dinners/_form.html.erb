@@ -1,5 +1,5 @@
 <%= form_for dinner, url: admin_dinner_path(dinner), html: {method: "patch"} do |f| %>
-
+   <%= render '/layouts/errors', object: f.object %>
   <h4>Dinner:</h4>
   <div class="">
     <%= f.label "Date", class: "form-control" %>
@@ -10,11 +10,12 @@
   </div>
 
   <h4>Dishes:</h4>
-  <div class="">
+  <div class="dish-container">
     <%=f.fields_for :dishes do |d| %>
+    <%= render '/layouts/errors', object: d.object %>
       <%= render '/shared/dishes/dish_fields', f: d %>
     <% end %>
-    <%= link_to_add_association 'add another dish', f, :dishes, partial: '/shared/dishes/dish_fields' %>
+    <%= link_to_add_association 'add another dish', f, :dishes, partial: '/shared/dishes/dish_fields', class: 'button' %>
     <%= f.submit %>
   </div>
 

@@ -6,7 +6,8 @@ class Dinner < ApplicationRecord
   accepts_nested_attributes_for :dishes
   has_many :images, as: :imageable
   has_many :comments, as: :commentable
-  validates_associated :dishes
+  validates :date, presence: true, allow_blank: false, allow_nil: false
+  validates_associated :dishes, :message => "name can't be blank"
   default_scope { order(date: 'DESC') }
 
 
@@ -25,10 +26,11 @@ class Dinner < ApplicationRecord
     end
 
     dishes = remaining_dishes.collect do |k,v|
-      if v[:id]
+      if v[:id] && !v[:id].blank?
         dish = Dish.find_by(id: v[:id])
       else
-        dish = Dish.new(name: v[:name], creators: v[:creators])
+        dish = Dish.find_or_initialize_by(name: v[:name])
+        dish.creators = v[:creators]
       end
       dish.creators == "" ? dish.creators = "Stuyvesant Supper Club" : dish.creators
 
@@ -37,14 +39,13 @@ class Dinner < ApplicationRecord
         items = name_string.split(',')
         ingredients = items.collect {|i| Ingredient.find_or_create_by(name: i.strip)}
         dish.ingredients = ingredients
+        self.dishes << dish unless self.dishes.include?(dish)
       end
-      dish
-    end
-    self.dishes = dishes
-  end
 
-  def dishes_attributes
-    "hello"
+      dish.save!
+
+    end
+
   end
 
 end

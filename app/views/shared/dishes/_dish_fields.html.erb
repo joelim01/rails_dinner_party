@@ -1,16 +1,20 @@
 <div class="nested-fields">
-  
+
+
+  <% unless f.object.name && f.object.id %>
+    <%= f.collection_select :id, Dish.order(:name), :id, :name, {prompt: 'Select or create a new dish'} %>
+  <% end %>
+
   <%= f.label :name %>
   <%= f.text_field :name %><br>
 
   <%= f.label :creators %>
   <%= f.text_field :creators, autofocus: true, placeholder: "Stuyvesant Supper Club" %>
 
-  <div class="">
+  <div class="ingredients">
     <%=f.fields_for :ingredients do |i| %>
       <%= render '/ingredients/ingredients_fields', f: i %>
     <% end %>
   </div>
-
-  <%= link_to_remove_association "remove dish", f %>
+  <%= link_to_remove_association "remove dish", f %><br><br>
 </div>
