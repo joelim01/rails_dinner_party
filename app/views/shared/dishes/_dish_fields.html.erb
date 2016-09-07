@@ -12,9 +12,9 @@
   <%= f.text_field :creators, autofocus: true, placeholder: "Stuyvesant Supper Club" %>
 
   <div class="ingredients">
-    <%=f.fields_for :ingredients do |i| %>
+    <%=f.fields_for :ingredients_attributes do |i| %>
       <%= render '/ingredients/ingredients_fields', f: i %>
     <% end %>
   </div>
-  <%= link_to_remove_association "remove dish", f %><br><br>
+  <%=render partial: 'dishes_actions', locals: {f: f} %>
 </div>

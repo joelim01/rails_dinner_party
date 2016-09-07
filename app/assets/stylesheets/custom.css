@@ -83,6 +83,8 @@
   left: 5px; }
 .navbar {
   display: none; }
+.multi-select {
+  height: auto; }
 
 /* Larger than phone */
 @media (min-width: 550px) {

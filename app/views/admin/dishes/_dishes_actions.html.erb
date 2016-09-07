@@ -1,0 +1,5 @@
+
+<%= f.label "Dates" %>
+<%= f.collection_select :dinner_ids, Dinner.order(:date), :id, :display_simpledatetime, {}, {multiple: true, class: 'multi-select'}%><br>
+
+<%= link_to "Delete dish", admin_dish_path(f.object), method: :delete, class: "button" %>
