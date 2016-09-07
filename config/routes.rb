@@ -8,10 +8,13 @@ Rails.application.routes.draw do
     resources :reservations
   end
 
-  resources :dishes do
+  resources :dishes, only: [:index, :create, :new] do
     resources :images
     resources :comments
   end
+
+  post "/dishes" => redirect("admin/dishes")
+  patch "/dishes" => redirect("admin/dishes")
 
   resources :users, only: [:edit, :update] do
     resources :dishes, only: [:index]
