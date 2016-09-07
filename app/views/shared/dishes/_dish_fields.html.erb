@@ -1,15 +1,14 @@
 <div class="nested-fields">
 
-
-  <% unless f.object.name && f.object.id %>
-    <%= f.collection_select :id, Dish.order(:name), :id, :name, {prompt: 'Select or create a new dish'} %>
+  <% unless (f.object.name && f.object.id) || dropdown == false %>
+    <%= f.select :id, options_from_collection_for_select(Dish.all.order(:name), :id, :name), {prompt: 'Select or create a new dish'}  %>
   <% end %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %><br>
+  <%= f.text_field :name, autofocus: true %><br>
 
   <%= f.label :creators %>
-  <%= f.text_field :creators, autofocus: true, placeholder: "Stuyvesant Supper Club" %>
+  <%= f.text_field :creators, placeholder: "Stuyvesant Supper Club" %>
 
   <div class="ingredients">
     <%=f.fields_for :ingredients_attributes do |i| %>

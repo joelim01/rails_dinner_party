@@ -15,13 +15,12 @@ class Dish < ApplicationRecord
   end
 
   def ingredients_attributes=(attributes)
-    if attributes[:ingredients_string] != nil && attributes[:ingredients_string] != ""
+    if attributes[:ingredients_string] != nil
       name_string = attributes[:ingredients_string].downcase
       items = name_string.split(',')
       ingredients = items.collect {|i| Ingredient.find_or_create_by(name: i.strip)}
       self.ingredients = ingredients
-      binding.pry
-      self.save!
+      self.save
     end
   end
 

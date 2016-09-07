@@ -1,1 +1,11 @@
-<%= render partial: "form" %>
+<h4>Dishes:</h4>
+<%= link_to "New Dish", new_admin_dish_path, class: "button" %>
+<% @dishes.each do |d| %>
+  <%= form_for d, url: admin_dish_path(d), html: { method: :patch } do |f| %>
+    <div class="dishes-container">
+      <%= render '/layouts/errors', object: @dish unless @dish == nil%>
+      <%= render partial: '/shared/dishes/dish_fields', locals: {dropdown: false, f: f} %>
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>

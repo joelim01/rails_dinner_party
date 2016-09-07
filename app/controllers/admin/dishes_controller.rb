@@ -5,15 +5,32 @@ class Admin::DishesController < ApplicationController
     @dishes = Dish.all
   end
 
+  def new
+    @dish = Dish.new
+  end
+
+  def create
+    if @dish = Dish.create(dishes_params)
+      redirect_to admin_dishes_path, :flash => { :message => "Dish created." }
+    else
+      render :create
+    end
+  end
+
+
   def destroy
     Dish.find_by(id: params[:id]).destroy
     redirect_to admin_dishes_path, :flash => { :message => "Dish deleted." }
   end
 
   def update
+    @dishes = Dish.all
     @dish = Dish.find(params[:id])
-    @dish.update(dishes_params)
-    redirect_to admin_dishes_path, :flash => { :message => "Dish updated." }
+    if @dish.update(dishes_params)
+      redirect_to admin_dishes_path, :flash => { :message => "Dish updated." }
+    else
+      render "admin/dishes/index"
+    end
   end
 
   def dishes_params
@@ -21,9 +38,3 @@ class Admin::DishesController < ApplicationController
   end
 
 end
-
-
-# {"utf8"=>"✓", "_method"=>"patch",
-#   "dish"=>{"name"=>"Poached Oyster", "creators"=>"Stuyvesant Supper Club",
-#     "ingredients"=>{"ingredients_string"=>"Good Things"},
-#     "dinner_ids"=>["", "2", "3"]}, "commit"=>"Update Dish", "controller"=>"dishes", "action"=>"update", "id"=>"22"} permitted: false>
