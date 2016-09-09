@@ -23,7 +23,7 @@ class ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find_by(user_id: params[:reservation][:user_id], dinner_id: params[:reservation][:dinner_id])
-    if @reservation.update(party_of: params[:party_of])
+    if @reservation.update(party_of: params[:reservation][:party_of])
       redirect_to user_reservations_path(current_user), :flash => { :message => "Your reservation has been updated." }
     else
       render "index"

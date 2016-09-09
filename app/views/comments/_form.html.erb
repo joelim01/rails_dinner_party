@@ -1,5 +1,6 @@
-<%= form_for [dinner, dinner.comments.build(user: current_user)] do |f| %>
+<%= form_for [dinner, comments] do |f| %>
   <%= f.hidden_field :user_id %>
-  <%= f.text_area :content, class: "form-control" %>
-  <%= f.submit "Submit Comment" %>
+  <%= f.text_area :content, class: "form-control" %><br>
+  <%= link_to "Delete Comment", dinner_comment_path(dinner, comments), method: :delete unless comments.id == nil %>
+  <%= f.submit %>
 <% end %>

@@ -5,8 +5,8 @@
     <% if commentable == true %>
     <details>
       <summary>See Comments...</summary>
-      <%= render partial: 'comments/comments', collection: dinner.comments %>
-      <%= render partial: 'comments/form', locals: {dinner: dinner} %>
+        <%= render partial: 'comments/comments', collection: dinner.comments, locals: {dinner: dinner} %>
+        <%= render partial: 'comments/form', locals: {dinner: dinner, comments: dinner.comments.build(user: current_user)} %>
     </details>
     <% end %>
 

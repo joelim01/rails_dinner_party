@@ -1,4 +1,8 @@
-<div class="">
+<% if comments.user != current_user %>
+  <div class="">
     <%=comments.user.email%> said...<br>
     <%=comments.content%><br>
-</div>
+  </div>
+<% else %>
+  <%= render partial: 'comments/form', locals: {comments: comments, dinner: dinner} %>
+<% end %>
