@@ -1,0 +1,3 @@
+<%= form_for @reservation, url: admin_reservation_path(@reservation), html: { method: :patch } do |f| %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>

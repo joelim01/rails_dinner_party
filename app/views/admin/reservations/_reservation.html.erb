@@ -1,0 +1,6 @@
+<% d.reservations.each do |r| %>
+  <%= r.user.email %>, party of <%= r.party_of %>, on <%= r.dinner.display_simpledatetime %>
+  <%=link_to "edit", edit_admin_reservation_path(r) %>
+  <%=link_to "cancel", admin_reservation_path(r), method: '_destroy' %>
+  <br>
+<% end %>

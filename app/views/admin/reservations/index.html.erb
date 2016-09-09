@@ -1,0 +1,11 @@
+<h4>All Reservations</h4>
+
+<div class="">
+  <h5>Upcoming</h5>
+    <%=render partial: 'reservation', collection: @dinners_future, as: :d%>
+</div>
+<br>
+<div class="">
+  <h5>Past</h5>
+    <%=render partial: 'reservation', collection: @dinners_past, as: :d%>
+</div>

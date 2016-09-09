@@ -1,0 +1,6 @@
+  <%= render "layouts/errors", object: @reservation %>
+  <%= f.label :date %>
+  <%= f.collection_select :dinner_id, Dinner.all, :id, :date %>
+  <%= f.label :party_of %>
+  <%= f.number_field :party_of %><br>
+  <%= f.submit %>
