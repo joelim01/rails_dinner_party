@@ -1,0 +1,7 @@
+<%= form_for [object, comments] do |f| %>
+<%= render '/layouts/errors', object: f.object %>
+  <%= f.hidden_field :user_id %>
+  <%= f.text_area :content, class: "form-control" %><br>
+  <%= link_to "Delete Comment", eval("#{object.class.name.downcase}_comment_path(object, comments)"), method: :delete, class: "button" unless comments.id == nil %>
+  <%= f.submit %>
+<% end %>

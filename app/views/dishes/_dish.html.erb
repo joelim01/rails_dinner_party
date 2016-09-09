@@ -1,0 +1,11 @@
+
+<%= dish.name %><br>
+<%= dish.ingredients.map(&:name).join ', ' %>
+
+<% if commentable == true %>
+  <details>
+    <summary>See Comments...</summary>
+    <%= render partial: 'shared/comments/comments', collection: dish.comments, locals: {object: dish} %>
+    <%= render partial: 'shared/comments/form', locals: {object: dish, comments: dish.comments.build(user: current_user)} %>
+  </details>
+<% end %>
