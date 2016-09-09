@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 private
   def admin_only
     unless current_user.admin?
-      redirect_to :back, :alert => "Access denied."
+      redirect_to :root, :alert => "Access denied."
     end
   end
 

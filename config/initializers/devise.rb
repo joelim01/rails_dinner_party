@@ -28,7 +28,7 @@ Devise.setup do |config|
 
   require 'omniauth-google-oauth2'
   config.omniauth :google_oauth2, Rails.application.secrets.google_client_id, Rails.application.secrets.google_client_secret, {
-    scope: "email", access_type: "offline", approval_prompt: ""
+    scope: "email", access_type: "offline", approval_prompt: "", name: "Google"
   }
 
   # ==> Configuration for any authentication mechanism
