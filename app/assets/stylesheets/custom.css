@@ -111,6 +111,10 @@
     max-height: none; }
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   /* Navbar */

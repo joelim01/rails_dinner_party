@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable, :omniauthable
-
   has_many :reservations
   has_many :dinners, through: :reservations
   has_many :dishes, through: :dinners
+  validates :name, presence: true
 
 def dishes
   users_past_dishes = self.dinners.in_the_past.collect {|dinner| dinner.dishes}
@@ -28,7 +28,8 @@ def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
         return registered_user
       else
         user = User.create(email: data["email"],
-          provider:access_token.provider,
+          name: data[:name],
+          provider: access_token.provider,
           uid: access_token.uid ,
           password: Devise.friendly_token[0,20],
         )

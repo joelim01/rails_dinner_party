@@ -36,7 +36,6 @@ class Dinner < ApplicationRecord
           dish.name = hash_dish[:name]
           dish.creators = hash_dish[:creators]
         else
-            binding.pry
           dish = Dish.find_by(id: hash_dish[:id])
         end
       else

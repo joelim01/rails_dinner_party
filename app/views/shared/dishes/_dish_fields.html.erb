@@ -1,7 +1,6 @@
 <div class="nested-fields">
-
 <% dropdown ||= true %>
-  <% unless (f.object.name && f.object.id) || dropdown == false %>
+  <% unless (f.object.name && f.object.id) || dropdown == "false" %>
     <%= f.select :id, options_from_collection_for_select(Dish.all.order(:name), :id, :name), {prompt: 'Select or create a new dish'}  %>
   <% end %>
 
@@ -14,7 +13,7 @@
 
   <div class="ingredients">
     <%=f.fields_for :ingredients_attributes do |i| %>
-      <%= render '/ingredients/ingredients_fields', f: i %>
+      <%= render '/shared/ingredients/ingredients_fields', f: i %>
     <% end %>
   </div>
   <%=render partial: 'dishes_actions', locals: {f: f} %>

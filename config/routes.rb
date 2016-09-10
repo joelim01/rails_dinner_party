@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   authenticate :user do
-    
+
     resources :ingredients, only: [:create, :edit, :update]
 
     resources :dinners do
       resources :comments, only: [:create, :edit, :update]
-      resources :reservations, only: [:create, :destroy, :new]
+      resources :reservations, only: [:create, :destroy, :new, :update]
     end
 
     resources :dishes, only: [:index] do
@@ -28,12 +28,11 @@ Rails.application.routes.draw do
 
     resources :reservations, only: [:edit]
 
-
   end
 
   root to: 'dinners#index'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations'  }
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,5 +1,5 @@
 
-<%= dish.name %><br>
+<h6 class="underline"><%= dish.name %></h6>
 <%= dish.ingredients.map(&:name).join ', ' %>
 
 <% if commentable == true %>
@@ -8,4 +8,5 @@
     <%= render partial: 'shared/comments/comments', collection: dish.comments, locals: {object: dish} %>
     <%= render partial: 'shared/comments/form', locals: {object: dish, comments: dish.comments.build(user: current_user)} %>
   </details>
+  <br>
 <% end %>
