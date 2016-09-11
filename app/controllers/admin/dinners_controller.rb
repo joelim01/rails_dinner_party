@@ -22,6 +22,23 @@ class Admin::DinnersController < ApplicationController
        redirect_to edit_admin_dinner_path(@dinner), :flash => { :error => "#{invalid.record.class.name}: #{invalid.record.errors.full_messages.join " ,"}." }
   end
 
+  def new
+    @dinner = Dinner.new
+  end
+
+  def create
+    @dinner = Dinner.new(dinner_params)
+    if @dinner.save
+      redirect_to edit_admin_dinner_path(@dinner), :flash => { :message => "Dinner created." }
+    else
+      render :new
+    end
+    rescue ActiveRecord::RecordInvalid => invalid
+       redirect_to new_admin_dinner_path, :flash => { :error => "#{invalid.record.class.name}: #{invalid.record.errors.full_messages.join " ,"}." }
+  end
+
+private
+
   def dinner_params
     params.require(:dinner).permit(:date, :chefs, :dish_dropdown_id,
               dishes_attributes: [:id, :name, :creators, :_destroy,

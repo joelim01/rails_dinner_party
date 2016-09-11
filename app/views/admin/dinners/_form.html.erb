@@ -1,4 +1,4 @@
-<%= form_for dinner, url: admin_dinner_path(dinner), html: {method: "patch"} do |f| %>
+
    <%= render '/layouts/errors', object: f.object %>
   <h5>DINNER:</h5>
   <div class="">
@@ -18,5 +18,3 @@
     <%= link_to_add_association 'add another dish', f, :dishes, partial: '/shared/dishes/dish_fields', class: 'button' %>
     <%= f.submit %>
   </div>
-
-<% end %>
