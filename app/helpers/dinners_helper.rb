@@ -12,4 +12,12 @@ module DinnersHelper
     datetime.strftime("%A, %B %d, %Y at %H:%M%p")
   end
 
+  def announce_chefs(dinners)
+    if !dinners.chefs.blank?
+     "Your #{"chef".pluralize(dinners.chefs.split(",").count)} will be: #{dinners.chefs}."
+    else
+     "Chefs will be announced soon."
+    end
+  end
+
 end

@@ -1,8 +1,8 @@
-<h4>All Reservations</h4>
+<h5>ALL RESERVATIONS</h5>
 
-<h5>Upcoming</h5>
+<h6>UPCOMING</h6>
 <%= render partial: "shared/dinners/dinners", collection: current_user.dinners.in_the_future, locals: { time: "past" } %>
 
 
-<h5>Past</h5>
+<h6>PAST</h6>
 <%= render partial: "shared/dinners/dinners", collection: current_user.dinners.in_the_past, locals: { time: "future" } %>

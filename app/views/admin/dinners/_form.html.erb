@@ -1,6 +1,6 @@
 <%= form_for dinner, url: admin_dinner_path(dinner), html: {method: "patch"} do |f| %>
    <%= render '/layouts/errors', object: f.object %>
-  <h4>Dinner:</h4>
+  <h5>DINNER:</h5>
   <div class="">
     <%= f.label "Date", class: "form-control" %>
     <%= f.date_field :date, class: "form-control" %>
@@ -9,7 +9,7 @@
     <%= f.text_field :chefs, class: "form-control" %>
   </div>
 
-  <h4>Dishes:</h4>
+  <h5>DISHES:</h5>
   <div class="dish-container">
     <%=f.fields_for :dishes do |d| %>
     <%= render '/layouts/errors', object: d.object %>

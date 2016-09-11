@@ -1,4 +1,4 @@
-<h4>Dishes:</h4>
+<h5>ALL DISHES:</h5>
 <%= link_to "New Dish", new_admin_dish_path, class: "button" %>
 <% @dishes.each do |d| %>
   <%= form_for d, url: admin_dish_path(d), html: { method: :patch } do |f| %>

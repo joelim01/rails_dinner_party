@@ -2,17 +2,20 @@
 <html>
 
   <head>
-    <title>RailsDinnerParty</title>
+    <title>Stuyvesant Supper Club</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Wire+One" rel="stylesheet">
   </head>
 
 
   <body>
     <div class="container">
-
+        <h2 class="logo">STUYVESANT SUPPER CLUB</h2>
+      <div class="navbar-spacer">
+      </div>
       <nav class="navbar">
         <div class="container">
           <ul class="navbar-list">
@@ -20,10 +23,8 @@
           </ul>
         </div>
       </nav>
-
       <%= render "/layouts/messages" %><br>
       <%= yield %>
-
     </div>
   </body>
 </html>
