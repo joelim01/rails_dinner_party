@@ -1,5 +1,5 @@
 <h5>ALL RESERVATIONS</h5>
-
+<%= render "layouts/errors", object: @reservation unless @reservation == nil %>
 <div class="">
   <h6 class="tighter">UPCOMING</h6>
     <%=render partial: 'reservation', collection: @dinners_future, as: :d%>
