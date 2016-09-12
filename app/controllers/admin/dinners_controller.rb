@@ -12,8 +12,7 @@ class Admin::DinnersController < ApplicationController
 
   def update
     @dinner = Dinner.find_by(id: params[:id])
-    if @dinner.update(date: params[:dinner][:date], chefs: params[:dinner][:chefs])
-      @dinner.update(dishes_attributes: params[:dinner][:dishes_attributes])
+    if @dinner.update(dinner_params)
       redirect_to edit_admin_dinner_path(@dinner), :flash => { :message => "Dinner updated." }
     else
       render :edit
@@ -40,7 +39,7 @@ class Admin::DinnersController < ApplicationController
 private
 
   def dinner_params
-    params.require(:dinner).permit(:date, :chefs, :dish_dropdown_id,
+    params.require(:dinner).permit(:date, :chefs,
               dishes_attributes: [:id, :name, :creators, :_destroy,
                 ingredients_attributes: [:ingredients_string]])
   end
