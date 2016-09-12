@@ -1,8 +1,8 @@
 <h5>ALL RESERVATIONS</h5>
-<%= render "layouts/errors", object: @reservation unless @reservation == nil %>
-<h6>UPCOMING</h6>
-<%= render partial: "shared/dinners/dinners", collection: current_user.dinners.in_the_future, locals: { time: "past" } %>
+  <%= render "layouts/errors", object: @reservation unless @reservation == nil %>
 
+<h6 class="tighter">UPCOMING</h6>
+  <%= render partial: "shared/dinners/dinners", collection: current_user.dinners.in_the_future, locals: { time: "past" } %>
 
-<h6>PAST</h6>
-<%= render partial: "shared/dinners/dinners", collection: current_user.dinners.in_the_past, locals: { time: "future" } %>
+<h6 class="tighter">PAST</h6>
+  <%= render partial: "shared/dinners/dinners", collection: current_user.dinners.in_the_past, locals: { time: "future" } %>

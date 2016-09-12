@@ -1,4 +1,4 @@
 <p>
   <h6 class="tighter"><%= display_datetime(dinners.date) %></h6>
-  <p><%= announce_chefs(dinners) %> <%= render partial: 'dinners_actions', locals: {dinners: dinners, time: (time ||= nil)} %> </p>
+  <%= announce_chefs(dinners) %> <%= render partial: 'dinners_actions', locals: {dinners: dinners, time: (time ||= nil)} %>
 </p>
