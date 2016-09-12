@@ -2,13 +2,14 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.user = current_user
     if @comment.valid?
       if params[:dinner_id]
         Dinner.find(params[:dinner_id]).comments << @comment
-        redirect_to dinner_path(params[:dinner_id])
+        redirect_to dinner_path(params[:dinner_id]), :flash => { :message => "Comment created." }
       elsif params[:dish_id]
         Dish.find(params[:dish_id]).comments << @comment
-        redirect_to user_dishes_path(current_user)
+        redirect_to user_dishes_path(current_user), :flash => { :message => "Comment created." }
       end
     else
       if params[:dinner_id]
@@ -27,9 +28,9 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update(content: params[:content])
       if params[:dinner_id]
-        redirect_to dinner_path(params[:dinner_id])
+        redirect_to dinner_path(params[:dinner_id]), :flash => { :message => "Comment updated." }
       elsif params[:dish_id]
-        redirect_to user_dishes_path(current_user), :flash => { :message => "Comment deleted." }
+        redirect_to user_dishes_path(current_user), :flash => { :message => "Comment updated." }
       end
     else
       if params[:dinner_id]
