@@ -36,10 +36,10 @@ class ReservationsController < ApplicationController
     redirect_to user_reservations_path(current_user)
   end
 
-private
+  private
 
-def reservation_params
-  params.require(:reservation).permit(:dinner_id, :user_id, :party_of)
-end
+  def reservation_params
+    params.require(:reservation).permit(:dinner_id, :user_id, :party_of)
+  end
 
 end

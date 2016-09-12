@@ -47,15 +47,15 @@ class CommentsController < ApplicationController
   def destroy
     Comment.find(params[:id]).destroy
     if params[:dinner_id]
-      redirect_to dinner_path(params[:dinner_id])
+      redirect_to dinner_path(params[:dinner_id]), :flash => { :message => "Comment deleted." }
     elsif params[:dish_id]
       redirect_to user_dishes_path(current_user), :flash => { :message => "Comment deleted." }
     end
   end
 
-private
+  private
   def comment_params
-    params.require(:comment).permit(:user_id, :content, :dinner_id)
+    params.require(:comment).permit(:content, :dinner_id)
   end
 
 end
