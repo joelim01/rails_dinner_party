@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
 
   def index
     if current_user
-      @reservations = Reservation.find_by(user_id: current_user)
+      @reservations = Reservation.find_by(user_id: current_user.id)
     else
       @reservations = Reservation.all
     end

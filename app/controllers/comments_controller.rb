@@ -12,15 +12,7 @@ class CommentsController < ApplicationController
         redirect_to user_dishes_path(current_user), :flash => { :message => "Comment created." }
       end
     else
-      if params[:dinner_id]
-        @dinner = Dinner.find(params[:dinner_id])
-        flash[:error] = @comment.errors.full_messages.to_sentence
-        redirect_back(fallback_location: root_path)
-      elsif params[:dish_id]
-        @dish = Dish.find(params[:dish_id])
-        flash[:error] = @comment.errors.full_messages.to_sentence
-        redirect_back(fallback_location: root_path)
-      end
+      redirect_to_dishes_or_dinners_failure
     end
   end
 
@@ -33,16 +25,8 @@ class CommentsController < ApplicationController
         redirect_to user_dishes_path(current_user), :flash => { :message => "Comment updated." }
       end
     else
-      if params[:dinner_id]
-        @dinner = Dinner.find(params[:dinner_id])
-        flash[:error] = @comment.errors.full_messages.to_sentence
-        redirect_back(fallback_location: root_path)
-      elsif params[:dish_id]
-        @dish = Dish.find(params[:dish_id])
-        flash[:error] = @comment.errors.full_messages.to_sentence
-        redirect_back(fallback_location: root_path)
+      redirect_to_dishes_or_dinners_failure
       end
-    end
   end
 
   def destroy
@@ -57,6 +41,18 @@ class CommentsController < ApplicationController
   private
   def comment_params
     params.require(:comment).permit(:content, :dinner_id)
+  end
+
+  def redirect_to_dishes_or_dinners_failure
+    if params[:dinner_id]
+      @dinner = Dinner.find(params[:dinner_id])
+      flash[:error] = @comment.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path)
+    elsif params[:dish_id]
+      @dish = Dish.find(params[:dish_id])
+      flash[:error] = @comment.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end
