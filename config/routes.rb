@@ -4,12 +4,12 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:create, :edit, :update]
 
     resources :dinners do
-      resources :comments, only: [:create, :edit, :update]
+      resources :comments, only: [:create, :edit, :update, :destroy]
       resources :reservations, only: [:create, :destroy, :new, :update]
     end
 
     resources :dishes, only: [:index] do
-      resources :comments
+      resources :comments, only: [:create, :edit, :update, :destroy]
     end
 
     resources :users, only: [:edit, :update] do
