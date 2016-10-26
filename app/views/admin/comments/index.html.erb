@@ -1,0 +1,10 @@
+<h3>Dish Comments</h3>
+
+  <% @comments_for_dinners.each do |comment| %>
+  <div class="">
+    <%=comment.user.email%> said...<br>
+    <%=comment.content%><br>
+  </div>
+  <% end %>
+
+<h3>Dinner Comments</h3>

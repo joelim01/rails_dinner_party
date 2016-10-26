@@ -9,7 +9,9 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.create!(reservation_params)
+    @reservation = Reservation.new(reservation_params)
+    @reservation.user = current_user
+    @reservation.save
     redirect_to user_reservations_path(current_user)
   end
 

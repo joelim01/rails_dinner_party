@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :dishes
       resources :reservations
       resources :users
+      resources :comments
     end
 
     resources :reservations, only: [:edit]
