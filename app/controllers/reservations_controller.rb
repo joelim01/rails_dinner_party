@@ -16,10 +16,16 @@ class ReservationsController < ApplicationController
   end
 
   def index
-    if current_user
+    if params[:dinner_id]
+      @reservations = Reservation.find_by(dinner_id: params[:dinner_id])
+    elsif current_user
       @reservations = Reservation.find_by(user_id: current_user.id)
     else
       @reservations = Reservation.all
+    end
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @reservations}
     end
   end
 
