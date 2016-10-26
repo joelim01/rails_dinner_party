@@ -4,7 +4,7 @@ class Admin::DinnersController < ApplicationController
   def index
     @dinners = Dinner.all
     respond_to do |f|
-      f.html { render :show }
+      f.html { render :index }
       f.json { render json: @dinners, include: 'dishes.ingredients' }
     end
   end

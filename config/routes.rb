@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
     resources :dinners do
       resources :comments, only: [:create, :edit, :update, :destroy]
-      resources :reservations, only: [:create, :destroy, :new, :update]
+      resources :reservations, only: [:create, :destroy, :new, :update, :index]
     end
 
     resources :dishes, only: [:index] do
