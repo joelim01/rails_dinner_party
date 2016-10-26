@@ -1,1 +1,26 @@
 <%= link_to "Edit this dinner", edit_admin_dinner_path(dinners) %>
+<%= link_to "See reservations", {}, id: "viewRes-#{dinners.id}" %>
+<div class="reservations-<%=dinners.id%>"></div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $("#viewRes-<%=dinners.id%>").on("click", function() {
+    event.preventDefault();
+    $.get("/dinners/<%=dinners.id%>/reservations.json", function(data) {
+       var reservations = data;
+       $(".reservations-<%=dinners.id%>").append("<h5>Parties of:</h6>")
+       if (typeof reservations === "array") {
+         for (var reservation in reservations) {
+           $(".reservations-<%=dinners.id%>").append("<ul><li><a href=/admin/reservations/"+reservations[reservation].id+"/edit>"+reservations[reservation].party_of+"</a></li></ul>")
+         }
+       } else {
+         $(".reservations-<%=dinners.id%>").append("<ul><li><a href=/admin/reservations/"+reservations.id+"/edit>"+reservations.party_of+"</a></li></ul>")
+      }
+      // $(".authorName").text(post["author"]["name"]);
+      // $(".postTitle").text(post["title"]);
+      // $(".postBody").text(post["description"]);
+      // // re-set the id to current on the link
+      // $(".js-next").attr("data-id", post["id"]);
+    });
+  });
+</script>
