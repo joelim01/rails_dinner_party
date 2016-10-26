@@ -3,6 +3,10 @@ class Admin::DinnersController < ApplicationController
 
   def index
     @dinners = Dinner.all
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @dinners, include: 'dishes.ingredients' }
+    end
   end
 
   def edit
