@@ -1,4 +1,39 @@
 <p>
-  <h6 class="tighter"><%= display_datetime(dinners.date) %></h6>
+  <h6 class="tighter" id="viewDinner-<%=dinners.id%>">Dinner on <%= display_datetime(dinners.date) %></h6>
   <%= announce_chefs(dinners) %> <%= render partial: 'dinners_actions', locals: {dinners: dinners, time: (time ||= nil)} %>
+  <div id="dinnerDetails-<%=dinners.id%>">
+  </div>
 </p>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+  $("#viewDinner-<%=dinners.id%>").on("click", function() {
+    event.preventDefault();
+    $.get("/dinners/<%=dinners.id%>.json", function(data) {
+      $("#dinnerDetails-<%=dinners.id%>").html("")
+      var dinner = data;
+      if (dinner.dishes.length > 1) {
+        for (var dish in dinner.dishes) {
+          $("#dinnerDetails-<%=dinners.id%>").append("<br><div class=tighter id=dishDetails-"+dinner.dishes[dish].id+"><a href='/admin/dishes'>"+dinner.dishes[dish].name+"</a></div>")
+          $("#dinnerDetails-<%=dinners.id%>").append("<ul class=tighter>")
+            for (var ingredient in dinner.dishes[dish].ingredients) {
+              $("#dinnerDetails-<%=dinners.id%>").append("<li>"+dinner.dishes[dish].ingredients[ingredient].name+"</li>")
+            }
+            $("#dinnerDetails-<%=dinners.id%>").append("</ul>")
+          }
+      } else {
+        var dish = dinner.dishes[0];
+        $("#dinnerDetails-<%=dinners.id%>").append("<br><div id=dishDetails><a href='/admin/dishes'>"+dish.name+"</a></div>")
+        $("#dinnerDetails-<%=dinners.id%>").append("<ul class=tighter>")
+        if (dish.ingredients.length > 1) {
+          for (var ingredient in dish.ingredients) {
+            $("#dinnerDetails-<%=dinners.id%>").append("<li>"+dish.ingredients[ingredient].name+"</li>")
+          }
+      }
+      $("#dinnerDetails-<%=dinners.id%>").append("</ul>")
+    }
+  });
+});
+</script>
