@@ -17,9 +17,9 @@ class ReservationsController < ApplicationController
 
   def index
     if params[:dinner_id]
-      @reservations = Reservation.find_by(dinner_id: params[:dinner_id])
+      @reservations = Reservation.where(dinner_id: params[:dinner_id])
     elsif current_user
-      @reservations = Reservation.find_by(user_id: current_user.id)
+      @reservations = Reservation.where(user_id: current_user.id)
     else
       @reservations = Reservation.all
     end
