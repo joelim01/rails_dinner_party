@@ -1,23 +1,9 @@
 <%= link_to "Edit this dinner", edit_admin_dinner_path(dinners) %>
 <%= link_to "See reservations", {}, id: "viewRes-#{dinners.id}" %>
+<button class="button open-modal">Launch modal window</button>
+
 <div class="reservations-<%=dinners.id%>"></div>
 
-
 <script type="text/javascript" charset="utf-8">
-
-  $("#viewRes-<%=dinners.id%>").on("click", function() {
-    event.preventDefault();
-    $.get("/dinners/<%=dinners.id%>/reservations.json", function(data) {
-       var res = data;
-       $(".reservations-<%=dinners.id%>").append("<h6>Parties of:</h6>")
-       if (typeof res === "array") {
-         for (var r in res) {
-           $(".reservations-<%=dinners.id%>").append("<ul><li><a href=#>"+res[r].party_of+"</a></li></ul>")
-         }
-       } else {
-         $(".reservations-<%=dinners.id%>").append("<ul><li><a href=/admin/reservations/"+res.id+"/edit>"+res.party_of+"</a></li></ul>")
-      }
-    });
-  });
-
+  $("#viewRes-<%=dinners.id%>").on("click", function(){ viewRes(<%=dinners.id%>); });
 </script>
