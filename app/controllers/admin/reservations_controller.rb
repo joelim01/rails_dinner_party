@@ -20,7 +20,7 @@ class Admin::ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
       respond_to do |f|
-        f.html { redirect_to admin_reservations_path, flash: {:message => "Reservation updated." }
+        f.html { redirect_to admin_reservations_path, flash: {:message => "Reservation updated." }}
         f.json { render json: @reservation }
       end
     else
