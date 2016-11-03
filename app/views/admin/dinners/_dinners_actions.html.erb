@@ -1,9 +1,10 @@
 <%= link_to "Edit this dinner", edit_admin_dinner_path(dinners) %>
-<%= link_to "See reservations", {}, id: "viewRes-#{dinners.id}" %>
-<button class="button open-modal">Launch modal window</button>
+<%= link_to "See reservations", {}, :data => { :dinnId => dinners.id } %>
 
 <div class="reservations-<%=dinners.id%>"></div>
 
 <script type="text/javascript" charset="utf-8">
-  $("#viewRes-<%=dinners.id%>").on("click", function(){ viewRes(<%=dinners.id%>); });
+  $("a[data-dinnID='" + <%=dinners.id%> +"']").click(function(event){
+    viewRes(event);
+  });
 </script>
