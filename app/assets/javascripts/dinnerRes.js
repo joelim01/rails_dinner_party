@@ -4,14 +4,14 @@ class Reservation {
   this.party_of = partySize;
 }
 
-  update() {
+  update(callback) {
     var reservation = { reservation: this };
     $.ajax({
         method: 'patch',
         url: 'reservations/' + this.id + '.json',
         data: reservation
       }).done(function(){
-
+        callback();
       })
     };
   };
