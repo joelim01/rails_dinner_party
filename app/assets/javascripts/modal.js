@@ -1,5 +1,4 @@
 function setModal() {
-
   // set close modal behaviour
   $('.close-modal').click(function() {
       $('.modal').toggleClass('modal-open');
