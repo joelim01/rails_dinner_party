@@ -4,20 +4,32 @@ var currentRes;
 function viewRes(event) {
     event.preventDefault();
     var dinnerId = event.target.dataset.dinnid
-    $.get("/dinners/" + dinnerId + "/reservations.json", function(data) {
+    var promise = getReservation(dinnerId);
+    $(".reservations-" + dinnerId).html("")
+    $(".reservations-" + dinnerId).append("<h6>Parties of:</h6>")
+    promise.then(function(data) {
         var res = data;
-        $(".reservations-" + dinnerId).html("")
-        $(".reservations-" + dinnerId).append("<h6>Parties of:</h6>")
         if (res.length > 1) {
             for (var r in res) {
-                $(".reservations-" + dinnerId).append("<li><a href='' class='open-modal' data-resID=" + res[r].id + ">" + res[r].party_of + "</a></li>")
-                res_array[res[r].id] = new Reservation(res[r].id, res[r].party_of);
-                attachModal(res[r].id);
+                createReservation(res[r], dinnerId);
+                updateReservationDisplay(res[r], dinnerId);
             }
         } else {
-            $(".reservations-" + dinnerId).append("<li><a href='' class='open-modal' data-resID=" + res[0].id + ">" + res[0].party_of + "</a></li>")
-            res_array[res[0].id] = new Reservation(res[0].id, res[0].party_of);
-            attachModal(res[0].id)
+            createReservation(res[0], dinnerId);
+            updateReservationDisplay(res[0], dinnerId);
         }
     });
-  };
+};
+
+function getReservation(id) {
+    return Promise.resolve($.get("/dinners/" + id + "/reservations.json"));
+};
+
+function createReservation(reservation, dinner) {
+    res_array[reservation.id] = new Reservation(reservation.id, reservation.party_of);
+};
+
+function updateReservationDisplay(reservation, dinner) {
+    $(".reservations-" + dinner).append("<li><a href='' class='open-modal' data-resID=" + reservation.id + ">" + reservation.party_of + "</a></li>")
+    attachModal(reservation.id);
+}
