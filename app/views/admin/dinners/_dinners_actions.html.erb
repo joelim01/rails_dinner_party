@@ -2,9 +2,3 @@
 <%= link_to "See reservations", {}, :data => { :dinnId => dinners.id } %>
 
 <div class="reservations-<%=dinners.id%>"></div>
-
-<script type="text/javascript" charset="utf-8">
-  $("a[data-dinnID='" + <%=dinners.id%> +"']").click(function(event){
-    viewRes(event);
-  });
-</script>

@@ -27,5 +27,10 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(setModal);
+  $(document).ready(function(){
+    setModal();
+    $("a[data-dinnID]").click(function(event){
+      viewRes(event);
+    });
+  });
 </script>
